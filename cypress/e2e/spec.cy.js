@@ -3,9 +3,7 @@ const url=`http://localhost:3000`
 
 
 describe('Routers with assigned endpoints should be reached correctly ', () => {
-
-
-  it('/login route render correctly ',()=>{
+ it('/login route render correctly ',()=>{
     cy.visit(`${url}/login`);
     cy.url().should('eq', 'http://localhost:3000/login');
   })
@@ -32,14 +30,13 @@ describe('Routers with assigned endpoints should be reached correctly ', () => {
 })
 
 describe('Sign Up Flow', () => {
-  // Visiting the Signup Page
-
-  it('should visit the signup page', () => {
+ 
+ it('should visit the signup page', () => {
     cy.visit(`${url}/signup`);
     cy.wait(5000);
     cy.url().should('eq', 'http://localhost:3000/signup');
   });
-  // Checking elements in Signup Page
+ 
   it('should have name input', () => {
     cy.visit(`${url}/signup`);
     cy.get('form').should('be.visible');  // Wait for form
@@ -48,10 +45,6 @@ describe('Sign Up Flow', () => {
     cy.log('Checking input for name');
     cy.get('input[type="text"]').should('be.visible');
 });
-
-
- 
-
   it('should email input', () => {
     cy.visit(`${url}/signup`);
     cy.get('form').should('be.visible');  // Wait for form
@@ -62,8 +55,7 @@ describe('Sign Up Flow', () => {
     cy.get('input[type="email"]').should('be.visible');
   });
 
-
-  it('should password input', () => {
+it('should password input', () => {
     cy.visit(`${url}/signup`);
     cy.get('form').should('be.visible');  // Wait for form
     cy.log('Checking label for password');
@@ -71,19 +63,14 @@ describe('Sign Up Flow', () => {
     cy.log('Checking input for password');
     cy.get('input[type="password"]').should('be.visible');
   });
-
-
-
   it('should submit button', () => {
     cy.visit(`${url}/signup`);
     cy.wait(5000);
 
     cy.get('button').contains(/submit/i).click();
   });
-
-
-  // // Invalid Signup Attempt
-  it('should not proceed and show toast error if all fields are not entered', () => {
+// // Invalid Signup Attempt
+it('should not proceed and show toast error if all fields are not entered', () => {
     cy.visit(`${url}/signup`);
     cy.wait(5000);
     
@@ -95,11 +82,9 @@ describe('Sign Up Flow', () => {
     // Submit the form
     cy.get('button[type="submit"]').click();
     
-    // Check for toast error message
-    // cy.contains(/Complete all fields/i).should('be.visible'); // Assuming the toast error is for not completing all fields
+    
     cy.wait(5000);
     
-    // Ensure we're still on the signup page after a failed submission
     cy.url().should('eq', `${url}/signup`);
   });
 
@@ -122,13 +107,7 @@ describe('Sign Up Flow', () => {
     // Ensure we're still on the signup page after a failed submission
     cy.url().should('eq', `${url}/signup`);
   });
-
-
-  
-
-  // Valid Signup Attempt
-  // Note: This assumes the backend and the frontend are appropriately connected and will respond to valid credentials.
-  it('should sign up with valid data and automatically after signedup should be navigated to login page', () => {
+it('should sign up with valid data and automatically after signedup should be navigated to login page', () => {
     cy.visit(`${url}/signup`);
     cy.wait(5000);
     // Using a unique email to ensure uniqueness during testing.
@@ -140,13 +119,9 @@ describe('Sign Up Flow', () => {
     cy.get('input[type="password"]').type('password123');
     cy.get('button').contains(/Submit/i).click();
     cy.wait(8000);
-    // Assert that we are redirected to the homepage after successful sign-up.
-    // Also, there can be an assertion for a success toast message or any other indication of a successful sign-up.
     cy.url().should('eq', 'http://localhost:3000/login');
   });
 });
-
-
 describe('Login Flow', () => {
   beforeEach(() => {
     cy.visit(`${url}/login`);
@@ -278,7 +253,7 @@ describe('addproducts', () => {
   const url = 'http://localhost:3000'; // define the base URL for reusability
   const testProductName = "Test Product";
   const testProductPrice = "123"; // Use a string representation since we're typing into an input field
-  const filePath = '1038746.png'; // Test image in your Cypress fixtures directory
+  const filePath = '1038746.png'; 
 
   beforeEach(() => {
       // Visit login and perform a login
@@ -368,7 +343,7 @@ describe('Products Page Functionality', () => {
 
         // Add a product to the cart
         cy.get('.product-card').first().within(() => {
-            cy.get('button.addcart-btn').click();
+            cy.contains(/add to cart/i).click();
         });
 
         // Check if the cart count increased by 1
@@ -379,7 +354,7 @@ describe('Products Page Functionality', () => {
 
   it('should display a toast "added to cart!" when a product is added but if the product already is added it should show "this product is already in your cart"', () => {
     cy.get('.product-card').first().within(() => {
-      cy.get('button.addcart-btn').click();
+      cy.contains(/add to cart/i).click();
   });
 
   // Try to find either of the toasts
@@ -398,7 +373,7 @@ describe('Products Page Functionality', () => {
 
   it('should display be visible in cart page after adding the product "', () => {
     cy.get('.product-card').first().within(() => {
-      cy.get('button.addcart-btn').click();
+      cy.contains(/add to cart/i).click();
       cy.wait(8000)
        });
   cy.get('.cart-icon').click()
@@ -415,10 +390,6 @@ describe('Products Page Functionality', () => {
 
 
 });
-
-
-
-
 describe('Cart page ', () => {
 
   beforeEach(() => {
@@ -432,7 +403,7 @@ describe('Cart page ', () => {
   it('in cart the increase (+) with className .inc button should increase the item in cart',()=>{
     cy.wait(5000);
     cy.get('.product-card').first().within(() => {
-      cy.get('button.addcart-btn').click();
+      cy.contains(/add to cart/i).click();
       cy.wait(8000);
     });
     cy.get('.cart-icon').click();
@@ -450,7 +421,7 @@ describe('Cart page ', () => {
   it('in cart the decrease (-) with className .dec button should decrease the item in cart',()=>{
     cy.wait(5000);
     cy.get('.product-card').first().within(() => {
-      cy.get('button.addcart-btn').click();
+      cy.contains(/add to cart/i).click();
       cy.wait(4000);
     });
     cy.get('.cart-icon').click();
@@ -476,7 +447,7 @@ describe('Cart page ', () => {
   it('the delete button (dustbin icon with className delete-btn) should delete from cart',()=>{
     cy.wait(2000);
     cy.get('.product-card').first().within(() => {
-      cy.get('button.addcart-btn').click();
+      cy.contains(/add to cart/i).click();
       cy.wait(4000);
     });
     cy.get('.cart-icon').click();
@@ -490,13 +461,10 @@ describe('Cart page ', () => {
     });
   });
   
-  
-  
-
   it('in cart in the cart summary for the checkout, the summary price should have a class of .cart-summary-price and should show the final cart price',()=>{
     cy.wait(5000);
     cy.get('.product-card').first().within(() => {
-      cy.get('button.addcart-btn').click();
+      cy.contains(/add to cart/i).click();
       cy.wait(4000);
     });
     cy.get('.cart-icon').click();
@@ -508,7 +476,7 @@ describe('Cart page ', () => {
     // Adding a class name to your quantity div to target it here
     cy.wait(5000);
     cy.get('.product-card').first().within(() => {
-      cy.get('button.addcart-btn').click();
+      cy.contains(/add to cart/i).click();
       cy.wait(4000);
     });
     cy.get('.cart-icon').click();
@@ -519,7 +487,7 @@ describe('Cart page ', () => {
   it('should be a button in the summary of cash on delivery',()=>{
     cy.wait(5000);
     cy.get('.product-card').first().within(() => {
-      cy.get('button.addcart-btn').click();
+      cy.contains(/add to cart/i).click();
       cy.wait(4000);
     });
     cy.get('.cart-icon').click();
@@ -530,7 +498,7 @@ describe('Cart page ', () => {
   it('the cash on delivery button should lead the the /cashout page ',()=>{
     cy.wait(5000);
     cy.get('.product-card').first().within(() => {
-      cy.get('button.addcart-btn').click();
+      cy.contains(/add to cart/i).click();
       cy.wait(4000);
     });
     cy.get('.cart-icon').click();
@@ -552,7 +520,7 @@ describe('Cashout page', () => {
     cy.get('button').contains(/LOGIN/).click();
     cy.wait(5000);
     cy.get('.product-card').first().within(() => {
-      cy.get('button.addcart-btn').click();
+      cy.contains(/add to cart/i).click();
       cy.wait(4000);
     });
     cy.get('.cart-icon').click();
