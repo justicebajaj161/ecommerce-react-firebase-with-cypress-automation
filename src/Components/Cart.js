@@ -26,8 +26,9 @@ export const Cart = ({ user }) => {
     return (
         <>
             <Navbar user={user} />
+            <div className="hero"> 
             <>
-                {shoppingCart.length !== 0 && <h1>Cart</h1>}
+                {shoppingCart.length !== 0 && <h1 className='title-products'>Cart</h1>}
                 <div className='cart-container'>
                     {
                         shoppingCart.length === 0 && <>
@@ -86,6 +87,21 @@ export const Cart = ({ user }) => {
                     </div>}
                 </div>
             </>
+  <div className="cube"></div>
+  <div className="cube"></div>
+  <div className="cube"></div>
+  <div className="cube"></div>
+  <div className="cube"></div>
+  <div className="cube"></div>
+  <div className="cube"></div>
+  <div className="cube"></div>
+  <div className="cube"></div>
+  <div className="cube"></div>
+  <div className="cube"></div>
+ 
+  
+</div>
+           
         </>
     )
 }

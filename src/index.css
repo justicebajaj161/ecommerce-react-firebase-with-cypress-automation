@@ -1,10 +1,131 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
 
 html body {
-background-color: #e2e2e2;
+    background-color: #e0dcdc;
   }
   
 
+  .hero {
+    /* background-color: #939598; */
+    background-color: #e0dcdc;
+    position: relative;
+ 
+    overflow: hidden;
+    font-family: "Montserrat", sans-serif;
+  }
+  
+  .cube {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border: solid 1px #ed4e4e;
+    transform-origin: top left;
+    transform: scale(0) rotate(0deg) translate(-50%, -50%);
+    animation: cube 12s ease-in forwards infinite;
+  }
+  
+  .cube:nth-child(2n) {
+    border-color: #e86bc6;
+  }
+  
+  .cube:nth-child(2) {
+    animation-delay: 2s;
+    left: 25vw;
+    top: 40vh;
+  }
+  
+  .cube:nth-child(3) {
+    animation-delay: 4s;
+    left: 75vw;
+    top: 50vh;
+  }
+  
+  .cube:nth-child(4) {
+    animation-delay: 6s;
+    left: 90vw;
+    top: 10vh;
+  }
+  
+  .cube:nth-child(5) {
+    animation-delay: 8s;
+    left: 10vw;
+    top: 85vh;
+  }
+  
+  .cube:nth-child(6) {
+    animation-delay: 10s;
+    left: 50vw;
+    top: 10vh;
+  }
+  
+  .cube:nth-child(7) {
+    animation-delay: 12s;
+    left: 30vw;
+    top: 60vh;
+  }
+  
+  .cube:nth-child(8) {
+    animation-delay: 14s;
+    left: 20vw;
+    top: 30vh;
+  }
+  
+  .cube:nth-child(9) {
+    animation-delay: 16s;
+    left: 80vw;
+    top: 70vh;
+  }
+  
+  .cube:nth-child(10) {
+    animation-delay: 18s;
+    left: 40vw;
+    top: 20vh;
+  }
+  
+  .cube:nth-child(11) {
+    animation-delay: 20s;
+    left: 60vw;
+    top: 80vh;
+  }
+  
+  @-webkit-keyframes cube {
+    from {
+      transform: scale(0) rotate(0deg) translate(-50%, -50%);
+      opacity: 1;
+    }
+    to {
+        transform: scale(20) rotate(1440deg) translate(-50%, -50%);
+        opacity: 0;
+      }
+  }
+  
+  @keyframes cube {
+    from {
+      transform: scale(0) rotate(0deg) translate(-50%, -50%);
+      opacity: 1;
+    }
+    to {
+        transform: scale(20) rotate(1440deg) translate(-50%, -50%);
+        opacity: 0;
+      }
+  }
+  
+
+
+
+
+
+
+
+html .title-products{
+    color: rgb(218, 72, 96);
+    /* color: rgb(103, 1, 1); */
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    text-decoration: underline dotted rgb(42, 43, 44);
+}
 .wrapper {
     overflow-x: hidden;
     overflow-y: auto;
@@ -52,7 +173,8 @@ body {
 .navbox {
     display: flex;
     justify-content: space-between;
-    background-color:#f57224;
+    background-color:rgb(218, 72, 96);
+  
     align-items: center;
     padding: 10px;
 }
@@ -109,7 +231,7 @@ body {
     cursor: pointer;
     outline: none;
     border: hidden;
-    background-color: #2eca8b;
+    background-color: black;
     margin-left: 10px;
 }
 
@@ -133,26 +255,38 @@ h1 {
     align-items: center;
     padding: 20px;
     flex-wrap: wrap;
+    
 }
-
+.product-card {
+    z-index: 2000;
+    box-shadow: 8px 8px 4px #686868;
+    transition: box-shadow 0.5s;  /* This line ensures the transformation happens in 0.5 seconds */
+    /* height: 300px; */
+ }
+ 
+ .product-card:hover {
+     box-shadow: 15px 15px 4px #313030;
+ }
+ 
 .products-container .product-card {
-    width: 300px;
-    height: auto;
-    margin: 20px;
+    width: 280px;
+   height: auto;
+    margin: 50px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
     font-size: 12px;
+   background-color: #acacac;
     font-weight: 600;
     text-align: center;
-    box-shadow: 5px 5px 4px #e4e4e4;
+    
     position: relative;
 }
 
 .products-container .product-card .product-img {
     width: 100%;
-    height: 200px;
+    height: 280px;
 }
 
 .products-container .product-card .product-img img {
@@ -163,7 +297,7 @@ h1 {
 .products-container .product-card .product-name {
     display: block;
     width: 100%;
-    color: #f57224;
+    color: rgb(218, 72, 96);
     margin-top: 5px;
 }
 
@@ -174,7 +308,7 @@ h1 {
 }
 
 .products-container .product-card .addcart-btn {
-    background-color: #f57224;
+    background-color: rgb(218, 72, 96);
     color: #fff;
     border: hidden;
     cursor: pointer;
@@ -194,6 +328,7 @@ h1 {
     padding: 20px;
     font-size: 14px;
     font-weight: 600;
+   
 }
 
 .cart-container .cart-card {
@@ -203,6 +338,8 @@ h1 {
     justify-content: space-around;
     align-items: center;
     margin-bottom: 20px;
+    background-color: #a5a2a2;
+    border-radius: 20px;
 }
 
 @media(max-width: 768px) {
@@ -250,7 +387,7 @@ h1 {
 .cart-container .cart-card .cart-price-orignal {
     width: 150px;
     margin-left: 20px;
-    color: #f57224;
+    color:  rgb(218, 72, 96);
 }
 
 @media(max-width: 768px) {
@@ -292,8 +429,10 @@ h1 {
     display: flex;
     flex-direction: column;
     padding: 50px;
-    border: 1px solid #e4e4e4;
+    border: 1px solid #232121;
     width: 300px;
+    background-color: #a5a2a2;
+    border-radius: 20px;
 }
 
 .cart-summary .cart-summary-heading {

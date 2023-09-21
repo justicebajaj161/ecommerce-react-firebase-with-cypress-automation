@@ -22,7 +22,23 @@ export const Home = ({ user }) => {
     return (
         <div className='wrapper'>
             <Navbar user={user} />
+            <div className="hero"> 
             <Products />
+  <div className="cube"></div>
+  <div className="cube"></div>
+  <div className="cube"></div>
+  <div className="cube"></div>
+  <div className="cube"></div>
+  <div className="cube"></div>
+  <div className="cube"></div>
+  <div className="cube"></div>
+  <div className="cube"></div>
+  <div className="cube"></div>
+  <div className="cube"></div>
+ 
+  
+</div>
+           
         </div>
     )
 }
